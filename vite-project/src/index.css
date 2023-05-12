@@ -1,0 +1,97 @@
+* {
+  box-sizing: border-box;
+  margin: 0px;
+  padding: 0px;
+  font-family: sans-serif;
+}
+
+.flex {
+  display: flex;
+}
+.pointer {
+  cursor: pointer;
+}
+.atc {
+  align-items: center;
+}
+.jcSb {
+  justify-content: space-between;
+}
+.spacing {
+  padding: 15px 10%;
+}
+.navbar {
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    background: hsl(0, 0%, 100%);
+    color: hsl(200, 15%, 8%);
+
+}
+.homepage {
+  background-color: hsl(0, 0%, 98%);
+  height: 100vh;
+}
+.mainregioncont {
+  position: relative;
+  width: 200px;
+  color: hsl(200, 15%, 8%);
+
+}
+.regioncont,
+.regioncont1, .showregioncont1 {
+  font-size: 14px;
+  padding: 10px 15px;
+  width: 100%;
+  border-radius: 5px;
+  font-weight: 300;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  background-color:  hsl(0, 0%, 100%);
+
+}
+.regioncont1 {
+  margin-top: 10px;
+  position: absolute;
+  opacity: 0;
+  transition: all 0.3s;
+
+}
+.showregioncont1{
+  opacity: 1;
+  position: absolute;
+  transition: all 0.3s;
+  margin-top: 10px;
+}
+.regioncont1 div, .showregioncont1 div{
+  margin-block: 5px;
+  border-radius: 4px;
+  padding-block: 4px;
+  cursor: pointer;
+  z-index: 1;
+}
+.arrowUp {
+  transition: all 0.3s;
+transform: rotate(180deg);}
+.arrowdown {
+  transition: all 0.3s;
+}
+.search-container {
+  margin-top: 50px;
+}
+
+.input-container {
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  gap: 10px;
+  align-items: center;
+  font-size: 14px;
+  border-radius: 5px;
+  width: 25vw;
+  background-color:  hsl(0, 0%, 100%);
+  color: hsl(200, 15%, 8%);
+  padding: 5px 15px;
+}
+.input-container input {
+  outline: none;
+  border: none;
+  width: 100%;
+  padding: 10px 15px;
+}
