@@ -5,7 +5,10 @@ function Navbar({ darkMode, setDarkMode }) {
   return (
     <React.Fragment>
       <div className={darkMode ? "lightermode" : "slightlydarkmode"}>
-        <nav className="flex navbar jcSb atc spacing">
+        <nav style={{
+            background: darkMode ? "hsl(0, 0%, 98%)" : "hsl(207, 26%, 17%)",
+            color: darkMode ? "hsl(200, 15%, 8%)" : "hsl(0, 0%, 100%)",
+          }} className="flex navbar jcSb atc spacing">
           <h1>Where in the world?</h1>
 
           <div

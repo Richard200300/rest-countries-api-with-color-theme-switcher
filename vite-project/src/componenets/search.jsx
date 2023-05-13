@@ -14,7 +14,14 @@ function Search({ change, darkMode }) {
   return (
     <React.Fragment>
       <div>
-        <section className="flex jcSb search-container spacing" on>
+        <section
+          style={{
+            background: darkMode ? "hsl(0, 0%, 98%)" : "hsl(207, 26%, 17%)",
+            color: darkMode ? "hsl(200, 15%, 8%)" : "hsl(0, 0%, 100%)",
+          }}
+          className="flex jcSb search-container spacing"
+          on
+        >
           <article className={darkMode ? "lightermode" : "slightlydarkmode"}>
             <div className="flex input-container">
               <GoSearch
@@ -52,8 +59,7 @@ function Search({ change, darkMode }) {
                     background: darkMode
                       ? "hsl(0, 0%, 100%)"
                       : "hsl(209, 23%, 22%)",
-                    color: darkMode ? "hsl(200, 15%, 8%)" : "hsl(0, 0%, 100%)"
-
+                    color: darkMode ? "hsl(200, 15%, 8%)" : "hsl(0, 0%, 100%)",
                   }}
                   className={showRegion ? "showregioncont1" : "regioncont1"}
                 >
