@@ -4,11 +4,12 @@ import { GoSearch } from "react-icons/go";
 import Axios from "axios";
 
 function Search({ setallregion, region }) {
+  const array = ["africa"]
+  const [number, setNumber]= useState(0)
   const [showRegion, setShowRegion] = useState(false);
   useEffect(() => {
     if (region) {
-      
-      Axios.get(`https://restcountries.com/v3.1/region/africa`).then(
+      Axios.get(`https://restcountries.com/v3.1/region/${array[number]}`).then(
         (res) => {
           setallregion(res.data);
         }
@@ -44,7 +45,11 @@ function Search({ setallregion, region }) {
           </div>
 
           <div className={showRegion ? "showregioncont1" : "regioncont1"}>
-            <div> Africa</div>
+            <div onClick={()=> {
+              onClick={()=> {
+                onClick={setNumber(0)}
+              }}
+            }}> Africa</div>
             <div> America</div>
             <div > Asia</div>
             <div> Europe</div>
