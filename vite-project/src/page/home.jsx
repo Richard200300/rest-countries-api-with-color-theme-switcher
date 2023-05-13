@@ -4,55 +4,28 @@ import Display from "../componenets/display";
 import Search from "../componenets/search";
 import Axios from "axios";
 function Home() {
+  const [darkMode, setDarkMode] = useState(true);
   const [allregion, setallregion] = useState([]);
-  const [region, setregion] = useState(true);
 
   useEffect(() => {
-  
-      Axios.get("https://restcountries.com/v3.1/all").then((res) => {
-        setallregion(res.data);
-      });
-    
+    Axios.get(`https://restcountries.com/v3.1/all`).then((res) => {
+      setallregion(res.data);
+    });
   }, []);
 
+  function change(country) {
+    Axios.get(`https://restcountries.com/v3.1/${country}`).then((res) => {
+      setallregion(res.data);
+    });
+  }
   return (
     <React.Fragment>
       <main className="homepage">
-        <Navbar />
-        <Search region={region} setallregion={setallregion} />
-
-        <div className="grid-2 spacing">
-          {allregion?.map((item) => {
-            return (
-              <div>
-                <div className="countryContainer">
-                  <div className="flags">
-                    <img
-                      src={item.flags.png}
-                      alt={item.flags.alt}
-                      className="flagsimg"
-                    />
-                  </div>
-
-                  <div className="secondPartContainer">
-                    <h2 className="country">{item.name.common}</h2>
-                    <p>
-                      <span className="bold">Population</span>:{" "}
-                      {item.population}
-                    </p>
-                    <p>
-                      <span className="bold">Capital</span>: {item.capital}
-                    </p>
-                    <p>
-                      <span className="bold">Region</span>: {item.region}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            );
-          })}
+        <div className={darkMode ? "lightmode" : "darkmode"}>
+          <Navbar setDarkMode={setDarkMode} darkMode={darkMode}/>
+          <Search change={change} darkMode={darkMode}/>
+          <Display allregion={allregion}  darkMode={darkMode}/>
         </div>
-        <Display />
       </main>
     </React.Fragment>
   );

@@ -1,16 +1,25 @@
 import React from "react";
-import {BsMoon} from "react-icons/bs"
-function Navbar() {
+import { BsMoon } from "react-icons/bs";
+import { BsMoonFill } from "react-icons/bs";
+function Navbar({ darkMode, setDarkMode }) {
   return (
     <React.Fragment>
-      <nav className="flex navbar jcSb atc spacing">
-        <h1>Where in the world?</h1>
+      <div className={darkMode ? "lightermode" : "slightlydarkmode"}>
+        <nav className="flex navbar jcSb atc spacing">
+          <h1>Where in the world?</h1>
 
-        <div className="flex atc">
-            <BsMoon />
-          <p>Dark Mode</p>
-        </div>
-      </nav>
+          <div
+            className="flex atc gap-5"
+            onClick={() => {
+              setDarkMode((prevmode) => !prevmode);
+            }}
+          >
+           
+            {darkMode ?  <BsMoon /> : <BsMoonFill />}
+            <p>Dark Mode</p>
+          </div>
+        </nav>
+      </div>
     </React.Fragment>
   );
 }

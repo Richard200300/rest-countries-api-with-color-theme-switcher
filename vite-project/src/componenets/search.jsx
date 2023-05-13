@@ -1,62 +1,105 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { AiOutlineDown } from "react-icons/ai";
 import { GoSearch } from "react-icons/go";
 import Axios from "axios";
 
-function Search({ setallregion, region }) {
-  const array = ["africa"]
-  const [number, setNumber]= useState(0)
+function Search({ change, darkMode }) {
   const [showRegion, setShowRegion] = useState(false);
-  useEffect(() => {
-    if (region) {
-      Axios.get(`https://restcountries.com/v3.1/region/${array[number]}`).then(
-        (res) => {
-          setallregion(res.data);
-        }
-      );
-      
-    } else {
-      Axios.get("https://restcountries.com/v3.1/all").then((res) => {
-        setallregion(res.data);
-      });
+  const [name, setName] = useState("");
+  const handleKeyPress = (event) => {
+    if (event.key === "Enter") {
+      change(`name/${name}`);
     }
-  }, []);
-
-
+  };
   return (
     <React.Fragment>
-      <section className="flex jcSb search-container spacing">
-        <article>
-          <div className="flex input-container">
-            <GoSearch />
-            <input type="text" placeholder="Search for a country" />
-          </div>
-        </article>
+      <div>
+        <section className="flex jcSb search-container spacing" on>
+          <article className={darkMode ? "lightermode" : "slightlydarkmode"}>
+            <div className="flex input-container">
+              <GoSearch
+                onClick={() => {}}
+                className={darkMode ? "lightermode" : "slightlydarkmode"}
+              />
 
-        <article className="mainregioncont">
-          <div
-            className="flex atc regioncont jcSb pointer"
-            onClick={() => {
-              setShowRegion((prevRegion) => !prevRegion);
-            }}
-          >
-            <p> Filter by Region</p>
-            <AiOutlineDown className={showRegion ? "arrowdown" : "arrowUp"} />
-          </div>
+              <input
+                type="text"
+                className={darkMode ? "lightermode" : "slightlydarkmode"}
+                placeholder="Search for a country"
+                onKeyPress={handleKeyPress}
+                onChange={(event) => setName(event.target.value)}
+              />
+            </div>
+          </article>
+          <div>
+            <article className="mainregioncont">
+              <div className={darkMode ? "lightermode" : "slightlydarkmode"}>
+                <div
+                  className="flex atc regioncont jcSb pointer"
+                  onClick={() => {
+                    setShowRegion((prevRegion) => !prevRegion);
+                  }}
+                >
+                  <p> Filter by Region</p>
+                  <AiOutlineDown
+                    className={showRegion ? "arrowdown" : "arrowUp"}
+                  />
+                </div>
+              </div>
+              <div className={darkMode ? "lightermode" : "slightlydarkmode"}>
+                <div
+                  style={{
+                    background: darkMode
+                      ? "hsl(0, 0%, 100%)"
+                      : "hsl(209, 23%, 22%)",
+                    color: darkMode ? "hsl(200, 15%, 8%)" : "hsl(0, 0%, 100%)"
 
-          <div className={showRegion ? "showregioncont1" : "regioncont1"}>
-            <div onClick={()=> {
-              onClick={()=> {
-                onClick={setNumber(0)}
-              }}
-            }}> Africa</div>
-            <div> America</div>
-            <div > Asia</div>
-            <div> Europe</div>
-            <div> Oceania </div>
+                  }}
+                  className={showRegion ? "showregioncont1" : "regioncont1"}
+                >
+                  <div
+                    onClick={() => {
+                      change("region/africa");
+                    }}
+                  >
+                    Africa
+                  </div>
+                  <div
+                    onClick={() => {
+                      change("region/america");
+                    }}
+                  >
+                    {" "}
+                    America
+                  </div>
+                  <div
+                    onClick={() => {
+                      change("region/asia");
+                    }}
+                  >
+                    {" "}
+                    Asia
+                  </div>
+                  <div
+                    onClick={() => {
+                      change("region/europe");
+                    }}
+                  >
+                    Europe
+                  </div>
+                  <div
+                    onClick={() => {
+                      change("region/oceania");
+                    }}
+                  >
+                    Oceania{" "}
+                  </div>
+                </div>
+              </div>
+            </article>
           </div>
-        </article>
-      </section>
+        </section>
+      </div>
     </React.Fragment>
   );
 }
