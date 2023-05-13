@@ -1,9 +1,26 @@
-import React, {useState} from "react";
+import React, { useState, useEffect } from "react";
 import { AiOutlineDown } from "react-icons/ai";
 import { GoSearch } from "react-icons/go";
+import Axios from "axios";
 
-function Search() {
-    const [showRegion, setShowRegion] = useState(false)
+function Search({ setallregion, region }) {
+  const [showRegion, setShowRegion] = useState(false);
+  useEffect(() => {
+    if (region) {
+      
+      Axios.get(`https://restcountries.com/v3.1/region/africa`).then(
+        (res) => {
+          setallregion(res.data);
+        }
+      );
+      
+    } else {
+      Axios.get("https://restcountries.com/v3.1/all").then((res) => {
+        setallregion(res.data);
+      });
+    }
+  }, []);
+
 
   return (
     <React.Fragment>
@@ -15,23 +32,24 @@ function Search() {
           </div>
         </article>
 
-        <article className="mainregioncont" >
-          <div className="flex atc regioncont jcSb pointer" onClick={()=> {
-            setShowRegion(prevRegion => !prevRegion)
-        }}>
+        <article className="mainregioncont">
+          <div
+            className="flex atc regioncont jcSb pointer"
+            onClick={() => {
+              setShowRegion((prevRegion) => !prevRegion);
+            }}
+          >
             <p> Filter by Region</p>
-            <AiOutlineDown className={showRegion ? "arrowdown" : "arrowUp"}/>
+            <AiOutlineDown className={showRegion ? "arrowdown" : "arrowUp"} />
           </div>
 
-         
-          <div className={showRegion ? "showregioncont1": "regioncont1"}>
+          <div className={showRegion ? "showregioncont1" : "regioncont1"}>
             <div> Africa</div>
             <div> America</div>
-            <div> Asia</div>
+            <div > Asia</div>
             <div> Europe</div>
             <div> Oceania </div>
           </div>
-
         </article>
       </section>
     </React.Fragment>
